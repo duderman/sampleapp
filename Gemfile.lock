@@ -77,6 +77,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.0)
+    rspec_sequel_matchers (0.4.0)
+      sequel (>= 3.8.0)
     sequel (4.28.0)
     sequel_secure_password (0.2.12)
       bcrypt (>= 3.1, < 4.0)
@@ -131,6 +133,7 @@ DEPENDENCIES
   rack-standards
   rake
   rspec
+  rspec_sequel_matchers
   sequel
   sequel_secure_password
   sinatra

@@ -1,6 +1,16 @@
 require File.expand_path('../../spec_helper.rb', __FILE__)
 
 describe User do
+  describe 'validations' do
+    it { is_expected.to validate_presence :email }
+    it { is_expected.to validate_presence :name }
+    it { is_expected.to validate_presence :password_digest }
+    it { is_expected.to validate_presence :created_at }
+    it { is_expected.to validate_presence :updated_at }
+
+    it { is_expected.to validate_unique :email }
+  end
+
   describe '#admin?' do
     subject { user.admin? }
 

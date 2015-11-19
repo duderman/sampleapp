@@ -12,6 +12,7 @@ Sequel.migration do
       column :updated_at, 'timestamp without time zone', null: false
 
       primary_key [:id]
+      index :email, unique: true
     end
   end
 end

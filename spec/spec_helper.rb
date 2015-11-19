@@ -17,6 +17,7 @@ end
 RSpec.configure do |config|
   config.include RSpecMixin
   config.include FactoryGirl::Syntax::Methods
+  config.include RspecSequel::Matchers
 
   config.mock_with :rspec
   config.order = :random
