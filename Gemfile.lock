@@ -108,6 +108,9 @@ GEM
     rspec_sequel_matchers (0.4.0)
       sequel (>= 3.8.0)
     sequel (4.28.0)
+    sequel_pg (1.6.13)
+      pg (>= 0.8.0)
+      sequel (>= 3.39.0)
     sequel_secure_password (0.2.12)
       bcrypt (>= 3.1, < 4.0)
       sequel (>= 4.1.0, < 5.0)
@@ -170,6 +173,7 @@ DEPENDENCIES
   rspec
   rspec_sequel_matchers
   sequel
+  sequel_pg
   sequel_secure_password
   sinatra
   sinatra-contrib!

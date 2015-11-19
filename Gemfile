@@ -22,6 +22,7 @@ gem 'memcachier'
 
 # DB
 gem 'sequel'
+gem 'sequel_pg'
 gem 'sequel_secure_password'
 gem 'sinatra-sequel'
 gem 'pg'
