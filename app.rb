@@ -2,7 +2,7 @@ require 'rubygems'
 require 'bundler'
 
 # Setup load paths
-Bundler.require
+Bundler.require(:default, (ENV['RACK_ENV'] || :development))
 $LOAD_PATH << File.expand_path('../', __FILE__)
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
@@ -26,6 +26,8 @@ module Sampleapp
         ENV['DATABASE_URL'] ||
           "postgres://localhost:5432/sampleapp_#{environment}"
       }
+
+      set :root, Pathname.new(File.expand_path('..', __FILE__))
     end
 
     configure :development, :staging do

@@ -22,10 +22,19 @@ gem 'memcachier'
 
 # DB
 gem 'sequel'
+gem 'sequel_secure_password'
 gem 'sinatra-sequel'
 gem 'pg'
 
 group :development do
   gem 'thin'
   gem 'byebug'
+  gem 'pry'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'factory_girl'
+  gem 'ffaker'
+  gem 'database_cleaner'
 end
