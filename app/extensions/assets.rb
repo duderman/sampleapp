@@ -15,6 +15,27 @@ module Sampleapp
         end
       end
 
+      class AssetsConfigurator
+        attr_reader :app, :assets
+
+        def initialize(app, assets)
+          @app = app
+          @assets = assets
+        end
+
+        def configure
+          app.configure :development do
+            assets.cache = Sprockets::Cache::FileStore.new('./tmp')
+          end
+
+          app.configure :production do
+            assets.cache          = Sprockets::Cache::MemoryStore.new
+            assets.js_compressor  = Closure::Compiler.new
+            assets.css_compressor = YUI::CssCompressor.new
+          end
+        end
+      end
+
       def registered(app)
         app.set :assets, assets = Sprockets::Environment.new(app.settings.root)
 
@@ -26,23 +47,9 @@ module Sampleapp
 
         app.set :asset_host, ''
 
-        configure_assets(app, assets)
+        AssetsConfigurator.new(app, assets).configure
 
         app.helpers Helpers
-      end
-
-      private
-
-      def configure_assets(app, assets)
-        app.configure :development do
-          assets.cache = Sprockets::Cache::FileStore.new('./tmp')
-        end
-
-        app.configure :production do
-          assets.cache          = Sprockets::Cache::MemcacheStore.new
-          assets.js_compressor  = Closure::Compiler.new
-          assets.css_compressor = YUI::CssCompressor.new
-        end
       end
     end
   end

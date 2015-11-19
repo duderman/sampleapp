@@ -13,7 +13,6 @@ gem 'dotenv'
 
 # Assets
 gem 'sprockets'
-gem 'sprockets-memcache-store'
 gem 'uglifier'
 gem 'closure-compiler'
 gem 'yui-compressor'

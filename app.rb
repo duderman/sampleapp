@@ -11,6 +11,7 @@ Dotenv.load
 
 require 'sinatra/base'
 
+Dir['config/initializers/*.rb'].sort.each { |file| require file }
 Dir['lib/**/*.rb'].sort.each { |file| require file }
 
 require 'app/extensions'
@@ -40,7 +41,7 @@ module Sampleapp
       set :sessions,
           httponly: true,
           secure: production?,
-          expire_after: 5.years,
+          expire_after: SESSION_EXPIRATION_TIME,
           secret: ENV['SESSION_SECRET']
     end
 
@@ -48,8 +49,6 @@ module Sampleapp
     use Rack::Standards
     use Routes::Static
     use Routes::Assets unless settings.production?
-
-    # use Routes::Posts
   end
 end
 

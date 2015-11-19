@@ -22,4 +22,7 @@ namespace :db do
     `sequel -d #{database.url} > db/schema.rb`
     `pg_dump --schema-only #{database.url} > db/schema.sql`
   end
+
+  desc 'Runs migrations and dumps DB'
+  task migrate_and_dump: [:migrate, :dump]
 end
