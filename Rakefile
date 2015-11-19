@@ -1,6 +1,6 @@
 #!/usr/bin/env rake
 
-task :app do
+task :environment do
   require './app'
 end
 

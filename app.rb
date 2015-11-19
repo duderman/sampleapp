@@ -18,6 +18,7 @@ require 'app/extensions'
 require 'app/models'
 require 'app/helpers'
 require 'app/routes'
+require 'app/api'
 
 module Sampleapp
   class App < Sinatra::Application

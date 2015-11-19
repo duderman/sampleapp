@@ -1,3 +1,3 @@
 require './app'
 
-run Sampleapp::App
+run Rack::Cascade.new [Sampleapp::App, Sampleapp::Api::Root]

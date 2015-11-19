@@ -1,13 +1,13 @@
 namespace :db do
   desc 'Run DB migrations'
-  task migrate: :app do
+  task migrate: :environment do
     require 'sequel/extensions/migration'
 
     Sequel::Migrator.apply(Sampleapp::App.database, 'db/migrations')
   end
 
   desc 'Rollback migration'
-  task rollback: :app do
+  task rollback: :environment do
     require 'sequel/extensions/migration'
     database = Sampleapp::App.database
 
@@ -16,7 +16,7 @@ namespace :db do
   end
 
   desc 'Dump the database schema'
-  task dump: :app do
+  task dump: :environment do
     database = Sampleapp::App.database
 
     `sequel -d #{database.url} > db/schema.rb`

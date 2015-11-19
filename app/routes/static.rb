@@ -28,7 +28,7 @@ module Sampleapp
       def expire_static
         return if settings.development? || settings.test?
 
-        expires ONE_YEAR, :public, max_age: ONE_YEAR
+        expires ONE_YEAR, :public, max_age: STATIC_MAX_AGE
         headers 'Date' => Time.current.httpdate
       end
     end

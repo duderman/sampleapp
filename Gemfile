@@ -26,6 +26,10 @@ gem 'sequel_secure_password'
 gem 'sinatra-sequel'
 gem 'pg'
 
+# API
+gem 'grape'
+gem 'grape_logging'
+
 group :development do
   gem 'thin'
   gem 'byebug'
