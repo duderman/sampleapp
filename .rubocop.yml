@@ -1,0 +1,17 @@
+StringLiterals:
+  EnforcedStyle: single_quotes
+
+AsciiComments:
+  Enabled: false
+
+Lint/EndAlignment:
+  AlignWith: variable
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Documentation:
+  Enabled: false
+
+ClassVars:
+  Enabled: false
