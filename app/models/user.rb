@@ -3,6 +3,8 @@ module Sampleapp
     class User < Sequel::Model
       plugin :secure_password
 
+      one_to_many :posts, on_delete: :cascade
+
       def validate
         super
         validates_presence %i(email name password_digest created_at updated_at)

@@ -15,6 +15,8 @@ describe User do
         :email
       )
     end
+
+    it { is_expected.to have_one_to_many :posts }
   end
 
   describe '.authenticate' do
