@@ -10,6 +10,7 @@ gem 'activesupport'
 gem 'rake'
 gem 'builder'
 gem 'dotenv'
+gem 'logging'
 
 # Assets
 gem 'sprockets'
@@ -21,15 +22,14 @@ gem 'dalli'
 gem 'memcachier'
 
 # DB
+gem 'pg'
 gem 'sequel'
-gem 'sequel_pg'
+gem 'sequel_pg', require: 'sequel'
 gem 'sequel_secure_password'
 gem 'sinatra-sequel'
-gem 'pg'
 
 # API
 gem 'grape'
-gem 'grape_logging'
 
 group :development do
   gem 'thin'

@@ -4,10 +4,15 @@ module Sampleapp
     autoload :ErrorFormatter, 'app/api/error_formatter'
 
     class Root < Grape::API
-      prefix 'api'
       format :json
       error_formatter :json, Sampleapp::Api::ErrorFormatter
-      use GrapeLogging::Middleware::RequestLogger, logger: Logger.new(STDOUT)
+      logger LoggerBuilder.new('api', level: :debug).build
+      helpers do
+        def logger
+          Sampleapp::Api::Root.logger
+        end
+      end
+      use Sampleapp::Api::Logger
 
       before do
         I18n.locale = params[:locale] || I18n.default_locale

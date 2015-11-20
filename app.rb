@@ -2,11 +2,10 @@ require 'rubygems'
 require 'bundler'
 
 # Setup load paths
-Bundler.require(:default, (ENV['RACK_ENV'] || :development))
+Bundler.require :default, (ENV['RACK_ENV'] || :development)
 $LOAD_PATH << File.expand_path('../', __FILE__)
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
 
-require 'dotenv'
 Dotenv.load
 
 require 'sinatra/base'
@@ -29,13 +28,12 @@ module Sampleapp
       }
 
       set :root, Pathname.new(File.expand_path('..', __FILE__))
-    end
 
-    configure :development, :staging do
-      database.loggers << Logger.new(STDOUT)
-    end
+      set :logger, LoggerBuilder.new.build
+      enable :logging
+      use Rack::CommonLogger,
+          LoggerBuilder.new(settings.environment, stdout: false).build
 
-    configure do
       disable :method_override
       disable :static
 
@@ -46,6 +44,16 @@ module Sampleapp
           secure: production?,
           expire_after: SESSION_EXPIRATION_TIME,
           secret: ENV['SESSION_SECRET']
+    end
+
+    configure :development, :staging do
+      database.loggers << LoggerBuilder.new('database').build
+    end
+
+    helpers do
+      def logger
+        settings.logger
+      end
     end
 
     use Rack::Deflater

@@ -1,3 +1,6 @@
 require './app'
 
-run Rack::Cascade.new [Sampleapp::App, Sampleapp::Api::Root]
+run Rack::URLMap.new(
+  '/' => Sampleapp::App,
+  '/api' => Sampleapp::Api::Root
+)
