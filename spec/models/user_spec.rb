@@ -9,6 +9,44 @@ describe User do
     it { is_expected.to validate_presence :updated_at }
 
     it { is_expected.to validate_unique :email }
+    it do
+      is_expected.to validate_format(
+        /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+        :email
+      )
+    end
+  end
+
+  describe '.authenticate' do
+    subject { described_class.authenticate(email, password) }
+    let(:email) { 'user@mail.com' }
+
+    context 'when user exists' do
+      let(:user_password) { 'asd' }
+      let!(:user) do
+        create(
+          :user,
+          email: email,
+          password: user_password,
+          password_confirmation: user_password
+        )
+      end
+
+      context 'with wrong password' do
+        let(:password) { 'ads' }
+        it { is_expected.to be nil }
+      end
+
+      context 'with correct password' do
+        let(:password) { user_password }
+        it { is_expected.to eq user }
+      end
+    end
+
+    context 'when user not exist' do
+      let(:password) { 'asd' }
+      it { is_expected.to be nil }
+    end
   end
 
   describe '#admin?' do
