@@ -1,8 +1,8 @@
 en:
   grape:
     errors:
-      page_not_found: ! "Not Found. There is no such route '%{path}'"
-      format: ! '%{attributes} %{message}'
+      page_not_found: "Not Found. There is no such route '%{path}'"
+      format: '%{attributes} %{message}'
       messages:
         coerce: 'is invalid'
         presence: 'is missing'

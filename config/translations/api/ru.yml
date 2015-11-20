@@ -1,3 +1,9 @@
 ru:
   api:
     default_message: Не реализовано
+
+    errors:
+      cant_save_record: "Не удалось сохранить запись. Ошибки: %{errors}"
+
+    profile:
+      password_changed: Пароль успешно изменен!

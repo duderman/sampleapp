@@ -6,6 +6,8 @@ module Sampleapp
       one_to_many :posts, on_delete: :cascade
       one_to_many :comments, on_delete: :cascade
 
+      ACCESSIBLE_PARAMS = [:name, :email].freeze
+
       def validate
         super
         validates_presence %i(email name password_digest created_at updated_at)

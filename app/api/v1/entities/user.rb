@@ -21,7 +21,7 @@ module Sampleapp
           expose :created_at, documentation: {
             type: :datetime, desc: ::User.attribute_description(:created_at)
           }
-          expose :created_at, documentation: {
+          expose :updated_at, documentation: {
             type: :datetime, desc: ::User.attribute_description(:updated_at)
           }
         end

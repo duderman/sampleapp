@@ -3,6 +3,7 @@ module Sampleapp
     module V1
       autoload :Root, 'app/api/v1/root'
       autoload :Users, 'app/api/v1/users'
+      autoload :Profile, 'app/api/v1/profile'
 
       autoload :Entities, 'app/api/v1/entities'
     end

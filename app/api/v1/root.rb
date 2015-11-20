@@ -9,6 +9,7 @@ module Sampleapp
         end
 
         mount Sampleapp::Api::V1::Users
+        mount Sampleapp::Api::V1::Profile
       end
     end
   end

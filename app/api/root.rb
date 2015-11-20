@@ -5,17 +5,28 @@ module Sampleapp
 
     class Root < Grape::API
       format :json
+
       error_formatter :json, Sampleapp::Api::ErrorFormatter
+
       logger LoggerBuilder.new('api', level: :debug).build
+      use Sampleapp::Api::Logger
       helpers do
         def logger
           Sampleapp::Api::Root.logger
         end
       end
-      use Sampleapp::Api::Logger
 
       before do
         I18n.locale = params[:locale] || I18n.default_locale
+      end
+
+      rescue_from Sequel::ValidationFailed do |e|
+        error_response(
+          message: I18n.t(
+            'api.errors.cant_save_record',
+            errors: e.model.errors.full_messages.join(', ')
+          )
+        )
       end
 
       mount Sampleapp::Api::V1::Root

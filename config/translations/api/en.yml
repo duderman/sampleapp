@@ -1,3 +1,9 @@
 en:
   api:
     default_message: Not implemented
+
+    errors:
+      cant_save_record: "Can't save record. Errors: %{errors}"
+
+    profile:
+      password_changed: Password successfuly changed!
