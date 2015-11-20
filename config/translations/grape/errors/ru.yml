@@ -1,0 +1,35 @@
+en:
+  grape:
+    errors:
+      page_not_found: ! "Путь '%{path}' не найден"
+      format: ! 'параметр %{attributes} %{message}'
+      messages:
+        coerce: 'неверен'
+        presence: 'отсутствует'
+        regexp: 'неверен'
+        blank: 'пуст'
+        values: 'не содержат подходящих значений'
+        missing_vendor_option:
+          problem: 'отсутствует опция :vendor'
+          summary: 'когда версия задается через загаловок, вы должны указать опцию :vendor. '
+          resolution: "например: version 'v1', using: :header, vendor: 'twitter'"
+        missing_mime_type:
+          problem: 'не найден mime-тип для %{new_format}'
+          resolution:
+            "вы можете выбрать существующий mime-тип из Grape::ContentTypes::CONTENT_TYPES
+            или добавить свой с помощью content_type :%{new_format}, 'application/%{new_format}'
+            "
+        invalid_with_option_for_represent:
+          problem: 'Вы должны указать класс сущности в опции :with.'
+          resolution: 'например: represent User, :with => Entity::User'
+        missing_option: 'Вы должны указать опцию :%{option}.'
+        invalid_formatter: 'невозможно конвертировать %{klass} в %{to_format}'
+        invalid_versioner_option:
+          problem: 'Неизвестный :using для версионирования: %{strategy}'
+          resolution: 'доступные стратегии для :using - :path, :header, :param'
+        unknown_validator: 'неизвестный валидатор: %{validator_type}'
+        unknown_options: 'неизвестные опции: %{options}'
+        incompatible_option_values: '%{option1}: %{value1} несовместима с %{option2}: %{value2}'
+        mutual_exclusion: 'взаимно исключающие'
+        at_least_one: 'пропущен. Хотя бы один параметр должен быть представлен'
+        exactly_one: 'пропущен. Только один параметр должен быть представлен'

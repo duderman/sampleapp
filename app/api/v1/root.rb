@@ -7,6 +7,8 @@ module Sampleapp
         get '/' do
           {}
         end
+
+        mount Sampleapp::Api::V1::Users
       end
     end
   end
