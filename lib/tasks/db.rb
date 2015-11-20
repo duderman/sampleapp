@@ -25,4 +25,9 @@ namespace :db do
 
   desc 'Runs migrations and dumps DB'
   task migrate_and_dump: [:migrate, :dump]
+
+  desc 'Seeds database'
+  task seed: :environment do
+    Sequel::Seeder.apply(Sampleapp::App.database, 'db/seeds')
+  end
 end

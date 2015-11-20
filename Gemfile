@@ -11,6 +11,7 @@ gem 'rake'
 gem 'builder'
 gem 'dotenv'
 gem 'logging'
+gem 'ffaker'
 
 # Assets
 gem 'sprockets'
@@ -25,11 +26,13 @@ gem 'memcachier'
 gem 'pg'
 gem 'sequel'
 gem 'sequel_pg', require: 'sequel'
+gem 'sequel-seed'
 gem 'sequel_secure_password'
 gem 'sinatra-sequel'
 
 # API
 gem 'grape'
+gem 'grape-entity'
 
 group :development do
   gem 'thin'
@@ -40,7 +43,6 @@ end
 group :test do
   gem 'rspec'
   gem 'factory_girl'
-  gem 'ffaker'
   gem 'database_cleaner'
   gem 'rspec_sequel_matchers'
 end

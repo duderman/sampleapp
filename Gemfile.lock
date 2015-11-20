@@ -63,6 +63,9 @@ GEM
       rack-accept
       rack-mount
       virtus (>= 1.0.0)
+    grape-entity (0.4.8)
+      activesupport
+      multi_json (>= 1.3.2)
     hashie (3.4.1)
     i18n (0.7.0)
     ice_nine (0.11.0)
@@ -110,6 +113,8 @@ GEM
     rspec_sequel_matchers (0.4.0)
       sequel (>= 3.8.0)
     sequel (4.28.0)
+    sequel-seed (0.3.1)
+      sequel (>= 4.0)
     sequel_pg (1.6.13)
       pg (>= 0.8.0)
       sequel (>= 3.39.0)
@@ -165,6 +170,7 @@ DEPENDENCIES
   factory_girl
   ffaker
   grape
+  grape-entity
   i18n
   logging
   memcachier
@@ -175,6 +181,7 @@ DEPENDENCIES
   rspec
   rspec_sequel_matchers
   sequel
+  sequel-seed
   sequel_pg
   sequel_secure_password
   sinatra
