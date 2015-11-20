@@ -4,6 +4,7 @@ module Sampleapp
       plugin :secure_password
 
       one_to_many :posts, on_delete: :cascade
+      one_to_many :comments, on_delete: :cascade
 
       def validate
         super

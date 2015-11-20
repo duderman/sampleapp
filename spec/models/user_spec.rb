@@ -17,6 +17,7 @@ describe User do
     end
 
     it { is_expected.to have_one_to_many :posts }
+    it { is_expected.to have_one_to_many :comments }
   end
 
   describe '.authenticate' do
