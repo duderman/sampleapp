@@ -13,8 +13,10 @@ en:
     profile:
       password_changed: Password successfuly changed!
 
-    posts:
-      deleted: Post successfuly deleted!
+    messages:
+      created: Successfuly created!
+      deleted: Successfuly deleted!
+      updated: Successfuly changed!
 
     params:
       page: Page offset to fetch

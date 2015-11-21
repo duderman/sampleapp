@@ -12,10 +12,10 @@ module Sampleapp
           expose :body, documentation: {
             type: :string, desc: ::Post.attribute_description(:body)
           } do |post, options|
-            if options[:full] || post.body.length < ::Post::PREVIEW_LENGTH
+            if options[:full]
               post.body
             else
-              "#{post.body[0..::Post::PREVIEW_LENGTH]}..."
+              post.body_preview
             end
           end
 

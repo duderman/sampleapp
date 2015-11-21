@@ -53,7 +53,7 @@ module Sampleapp
                           desc: ::Post.attribute_description(:id),
                           uuid: true
           end
-          get '/' do
+          get do
             authorize! :read, @post
             render_post
           end
@@ -69,7 +69,7 @@ module Sampleapp
               type: String,
               desc: ::Post.attribute_description(:body)
           end
-          put '/' do
+          put do
             authorize! :update, @post
             @post.update(body: params[:body])
             render_post
@@ -83,10 +83,10 @@ module Sampleapp
               desc: ::Post.attribute_description(:id),
               uuid: true
           end
-          delete '/' do
+          delete do
             authorize! :delete, @post
             @post.destroy
-            { status: :ok, message: I18n.t('api.posts.deleted') }
+            { status: :ok, message: I18n.t('api.messages.deleted') }
           end
         end
       end

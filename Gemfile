@@ -48,4 +48,5 @@ group :test do
   gem 'factory_girl'
   gem 'database_cleaner'
   gem 'rspec_sequel_matchers'
+  gem 'rspec-its'
 end
