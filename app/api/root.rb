@@ -31,7 +31,15 @@ module Sampleapp
       end
 
       rescue_from CanCan::AccessDenied do
-        error_response(message: I18n.t('api.errors.you_dont_have_access'))
+        response = ErrorFormatter.call(
+          I18n.t('api.errors.you_dont_have_access'),
+          nil, nil, env
+        )
+        Rack::Response.new(
+          [response],
+          403,
+          'Content-Type' => 'application/json'
+        ).finish
       end
 
       rescue_from :all do |e|
