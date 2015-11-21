@@ -7,6 +7,7 @@ module Sampleapp
       autoload :Comments, 'app/api/v1/comments'
 
       autoload :Entities, 'app/api/v1/entities'
+      autoload :Helpers, 'app/api/v1/helpers'
     end
   end
 end

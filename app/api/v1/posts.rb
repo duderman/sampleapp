@@ -5,14 +5,7 @@ module Sampleapp
         resource :posts
         authorize_routes!
 
-        helpers do
-          def render_post
-            if @post.is_a?(Post)
-              @post = Post.where(id: @post.id).eager(:comments).first
-            end
-            present @post, with: Sampleapp::Api::V1::Entities::Post, full: true
-          end
-        end
+        helpers Sampleapp::Api::V1::Helpers::PostsHelper
 
         desc 'Shows all posts'
         paginate
@@ -29,8 +22,21 @@ module Sampleapp
             full: false
         end
 
+        desc 'Shows specific post'
+        params do
+          requires :id, type: String,
+                        desc: ::Post.attribute_description(:id),
+                        uuid: true
+        end
+        get ':id' do
+          set_post
+          authorize! :read, @post
+          render_post
+        end
+
+        enable_authentication
+
         desc 'Create post'
-        requires_authentication
         params do
           requires :body,
             type: String,
@@ -41,53 +47,35 @@ module Sampleapp
           render_post
         end
 
-        namespace ':id' do
-          before do
-            @post = Post.where(id: params[:id]).first
-            error!(I18n.t('api.errors.not_found'), 404) unless @post
-          end
+        desc 'Update post'
+        params do
+          requires :id,
+            type: String,
+            desc: ::Post.attribute_description(:id),
+            uuid: true
+          requires :body,
+            type: String,
+            desc: ::Post.attribute_description(:body)
+        end
+        put ':id' do
+          set_post
+          authorize! :update, @post
+          @post.update(body: params[:body])
+          render_post
+        end
 
-          desc 'Shows specific post'
-          params do
-            requires :id, type: String,
-                          desc: ::Post.attribute_description(:id),
-                          uuid: true
-          end
-          get do
-            authorize! :read, @post
-            render_post
-          end
-
-          desc 'Update post'
-          requires_authentication
-          params do
-            requires :id,
-              type: String,
-              desc: ::Post.attribute_description(:id),
-              uuid: true
-            requires :body,
-              type: String,
-              desc: ::Post.attribute_description(:body)
-          end
-          put do
-            authorize! :update, @post
-            @post.update(body: params[:body])
-            render_post
-          end
-
-          desc 'Delete post'
-          requires_authentication
-          params do
-            requires :id,
-              type: String,
-              desc: ::Post.attribute_description(:id),
-              uuid: true
-          end
-          delete do
-            authorize! :delete, @post
-            @post.destroy
-            { status: :ok, message: I18n.t('api.messages.deleted') }
-          end
+        desc 'Delete post'
+        params do
+          requires :id,
+            type: String,
+            desc: ::Post.attribute_description(:id),
+            uuid: true
+        end
+        delete ':id' do
+          set_post
+          authorize! :delete, @post
+          @post.destroy
+          { status: :ok, message: I18n.t('api.messages.deleted') }
         end
       end
     end

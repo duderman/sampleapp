@@ -10,8 +10,9 @@ module Sampleapp
             error!(I18n.t('api.errors.not_found'), 404) unless @post
           end
 
+          enable_authentication
+
           desc 'Create comment'
-          requires_authentication
           params do
             requires :post_id,
               type: String,
@@ -38,7 +39,6 @@ module Sampleapp
             end
 
             desc 'Update comment'
-            requires_authentication
             params do
               requires :post_id,
                 type: String,
@@ -59,7 +59,6 @@ module Sampleapp
             end
 
             desc 'Delete comment'
-            requires_authentication
             params do
               requires :post_id,
                 type: String,

@@ -20,9 +20,8 @@ describe 'Profile', type: :api do
         get '/v1/profile'
       end
 
-      its(:status) { is_expected.to eq(200) }
-
       it 'renders user info' do
+        expect(last_response.status).to eq(200)
         expect(json[:user]).to eq(
           id: user.id,
           email: user.email,
@@ -61,9 +60,8 @@ describe 'Profile', type: :api do
         user.reload
       end
 
-      its(:status) { is_expected.to eq(200) }
-
       it 'renders new user info' do
+        expect(last_response.status).to eq(200)
         expect(json[:user]).to eq(
           id: user.id,
           email: params[:email],
@@ -107,18 +105,16 @@ describe 'Profile', type: :api do
         user.reload
       end
 
-      its(:status) { is_expected.to eq(200) }
-
       it 'changes user password' do
+        expect(last_response.status).to eq(200)
         expect(user.authenticate(password)).to eq(user)
       end
 
       context 'when password and confirmation do not match' do
         let(:params) { { password: password, confirmation: 'aa' } }
 
-        its(:status) { is_expected.to eq(422) }
-
         it 'renders error' do
+          expect(last_response.status).to eq(422)
           expect(json[:status]).to eq('error')
           expect(json[:message]).to match(/Can't save record/)
         end
