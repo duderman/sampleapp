@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Profile', type: :api do
+describe 'Profile API', type: :api do
   let(:user) { create(:user) }
 
   describe 'GET /profile' do
