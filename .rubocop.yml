@@ -1,3 +1,13 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'Guardfile'
+    - 'lib/grape/pagination/**/*'
+    - 'app/api/logger.rb'
+
 StringLiterals:
   EnforcedStyle: single_quotes
 
@@ -9,6 +19,9 @@ Lint/EndAlignment:
 
 Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Documentation:
   Enabled: false

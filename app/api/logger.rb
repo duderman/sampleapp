@@ -36,11 +36,11 @@ class Sampleapp::Api::Logger < Grape::Middleware::Base
 
       response_status = result[0]
       response_headers = result[1]
-      response_headers = response_headers.
-        select { |k, _v| k.start_with?('HTTP_') && !::Sampleapp::Api::Logger::HEADERS_BLACKLIST.include?(k) }.
-        collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }.
-        collect { |pair| pair.join(': ') }.
-        sort
+      response_headers = response_headers
+                         .select { |k, _v| k.start_with?('HTTP_') && !::Sampleapp::Api::Logger::HEADERS_BLACKLIST.include?(k) }
+                         .collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
+                         .collect { |pair| pair.join(': ') }
+                         .sort
 
       parts = []
       result[2].each { |part| parts << part }
@@ -57,7 +57,9 @@ class Sampleapp::Api::Logger < Grape::Middleware::Base
   def before
     @start = Time.now
 
-    ::Sampleapp::Api::Root.logger.debug "Started #{request_method} \"#{request_target}\" for #{request_ip} at #{Time.now}"
+    ::Sampleapp::Api::Root.logger.debug "Started #{request_method} " \
+                                        "\"#{request_target}\" for " \
+                                        "#{request_ip} at #{Time.now}"
     ::Sampleapp::Api::Root.logger.debug "Request headers: #{request_headers}"
     ::Sampleapp::Api::Root.logger.debug "Request body: #{request_params}"
     ::Sampleapp::Api::Root.logger.debug "Source: #{source_file}:#{source_line}"
@@ -110,10 +112,10 @@ class Sampleapp::Api::Logger < Grape::Middleware::Base
   end
 
   def request_headers
-    headers = env.select { |k, _v| k.start_with?('HTTP_') && !HEADERS_BLACKLIST.include?(k) }
-              .collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
-              .collect { |pair| pair.join(': ') }
-              .sort
+    env.select { |k, _v| k.start_with?('HTTP_') && !HEADERS_BLACKLIST.include?(k) }
+      .collect { |pair| [pair[0].sub(/^HTTP_/, ''), pair[1]] }
+      .collect { |pair| pair.join(': ') }
+      .sort
   end
 
   def request_params

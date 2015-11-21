@@ -9,8 +9,11 @@ module Sampleapp
 
       error_formatter :json, Sampleapp::Api::ErrorFormatter
 
-      logger LoggerBuilder.new('api', level: :debug).build
-      use Sampleapp::Api::Logger
+      if ENV['RACK_ENV'] != 'test'
+        logger LoggerBuilder.new('api', level: :debug).build
+        use Sampleapp::Api::Logger
+      end
+
       helpers do
         def logger
           Sampleapp::Api::Root.logger

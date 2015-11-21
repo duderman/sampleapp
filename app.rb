@@ -34,7 +34,7 @@ module Sampleapp
       set :logger, LoggerBuilder.new.build
       enable :logging
       use Rack::CommonLogger,
-          LoggerBuilder.new(settings.environment, stdout: false).build
+        LoggerBuilder.new(settings.environment, stdout: false).build
 
       disable :method_override
       disable :static
@@ -42,10 +42,10 @@ module Sampleapp
       set :erb, escape_html: true
 
       set :sessions,
-          httponly: true,
-          secure: production?,
-          expire_after: SESSION_EXPIRATION_TIME,
-          secret: ENV['SESSION_SECRET']
+        httponly: true,
+        secure: production?,
+        expire_after: SESSION_EXPIRATION_TIME,
+        secret: ENV['SESSION_SECRET']
     end
 
     configure :development, :staging do

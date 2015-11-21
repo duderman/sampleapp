@@ -15,23 +15,25 @@ module Grape::Pagination
     end
 
     def to_rfc5988
-      %w[next].map { |link| __send__(link).to_s }.join(', ')
+      %w(next).map { |link| __send__(link).to_s }.join(', ')
     end
 
-  private
+    private
 
     class Link
       attr_reader :url, :rel, :page_params
 
       def initialize(url, rel, page_params)
-        @url, @rel, @page_params = url, rel, page_params
+        @url = url
+        @rel = rel
+        @page_params = page_params
       end
 
       def to_s
-        %(<#{uri.to_s}>; rel="#{rel}")
+        %(<#{uri}>; rel="#{rel}")
       end
 
-    private
+      private
 
       def uri
         @uri ||= begin
@@ -40,8 +42,6 @@ module Grape::Pagination
           uri
         end
       end
-
     end
-
   end
 end
