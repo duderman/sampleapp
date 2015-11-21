@@ -22,18 +22,24 @@ module Sampleapp
       end
 
       rescue_from Sequel::ValidationFailed do |e|
-        error_response(
-          message: I18n.t(
+        response = ErrorFormatter.call(
+          I18n.t(
             'api.errors.cant_save_record',
             errors: e.model.errors.full_messages.join(', ')
-          )
+          ),
+          e.backtrace, nil, env
         )
+        Rack::Response.new(
+          [response],
+          422,
+          'Content-Type' => 'application/json'
+        ).finish
       end
 
-      rescue_from CanCan::AccessDenied do
+      rescue_from CanCan::AccessDenied do |e|
         response = ErrorFormatter.call(
           I18n.t('api.errors.you_dont_have_access'),
-          nil, nil, env
+          e.backtrace, nil, env
         )
         Rack::Response.new(
           [response],

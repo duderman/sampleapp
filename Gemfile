@@ -12,6 +12,8 @@ gem 'builder'
 gem 'dotenv'
 gem 'logging'
 gem 'ffaker'
+gem 'oj'
+gem 'multi_json'
 
 # Assets
 gem 'sprockets'
@@ -41,6 +43,12 @@ group :development do
   gem 'thin'
   gem 'byebug'
   gem 'pry'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'guard-rubocop'
+  gem 'terminal-notifier'
+  gem 'terminal-notifier-guard'
 end
 
 group :test do

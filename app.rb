@@ -5,6 +5,7 @@ require 'bundler'
 Bundler.require :default, (ENV['RACK_ENV'] || :development)
 $LOAD_PATH << File.expand_path('../', __FILE__)
 $LOAD_PATH << File.expand_path('../lib', __FILE__)
+$LOAD_PATH << File.expand_path('../spec', __FILE__)
 
 Dotenv.load
 

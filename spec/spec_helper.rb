@@ -7,15 +7,7 @@ require File.expand_path('../../app.rb', __FILE__)
 
 Dir[Sampleapp::App.root.join('spec/support/**/*.rb')].each { |f| require f }
 
-module RSpecMixin
-  include Rack::Test::Methods
-  def app
-    Sinatra::Application
-  end
-end
-
 RSpec.configure do |config|
-  config.include RSpecMixin
   config.include FactoryGirl::Syntax::Methods
   config.include RspecSequel::Matchers
 

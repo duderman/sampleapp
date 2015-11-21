@@ -3,7 +3,7 @@ Sequel.migration do
     create_table(:schema_info) do
       Integer :version, :default=>0, :null=>false
     end
-    
+
     create_table(:users, :ignore_index_errors=>true) do
       String :id, :null=>false
       String :email, :text=>true, :null=>false
@@ -12,22 +12,22 @@ Sequel.migration do
       TrueClass :is_admin, :default=>false
       DateTime :created_at, :null=>false
       DateTime :updated_at, :null=>false
-      
+
       primary_key [:id]
-      
+
       index [:email], :unique=>true
     end
-    
+
     create_table(:posts) do
       String :id, :null=>false
       foreign_key :user_id, :users, :type=>String, :null=>false, :key=>[:id]
       String :body, :text=>true, :null=>false
       DateTime :created_at, :null=>false
       DateTime :updated_at, :null=>false
-      
+
       primary_key [:id]
     end
-    
+
     create_table(:comments) do
       String :id, :null=>false
       foreign_key :user_id, :users, :type=>String, :null=>false, :key=>[:id]
@@ -35,7 +35,7 @@ Sequel.migration do
       String :text, :text=>true, :null=>false
       DateTime :created_at, :null=>false
       DateTime :updated_at, :null=>false
-      
+
       primary_key [:id]
     end
   end
