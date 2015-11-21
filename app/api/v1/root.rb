@@ -10,6 +10,7 @@ module Sampleapp
 
         mount Sampleapp::Api::V1::Users
         mount Sampleapp::Api::V1::Profile
+        mount Sampleapp::Api::V1::Posts
       end
     end
   end

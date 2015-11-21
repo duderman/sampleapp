@@ -33,6 +33,9 @@ gem 'sinatra-sequel'
 # API
 gem 'grape'
 gem 'grape-entity'
+gem 'cancancan'
+gem 'grape-cancan'
+gem 'addressable'
 
 group :development do
   gem 'thin'

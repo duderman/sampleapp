@@ -3,17 +3,15 @@ module Sampleapp
     module V1
       class Profile < Grape::API
         namespace :profile do
-          http_basic do |email, pass|
-            @current_user = User.authenticate(email, pass)
-          end
-
           desc 'Shows users profile',
             params: Sampleapp::Api::V1::Entities::User.documentation
+          requires_authentication
           get do
             present @current_user, with: Sampleapp::Api::V1::Entities::User
           end
 
           desc 'Update info'
+          requires_authentication
           params do
             User::ACCESSIBLE_PARAMS.each do |attr|
               optional attr, type: String
@@ -25,6 +23,7 @@ module Sampleapp
           end
 
           desc 'Change password'
+          requires_authentication
           params do
             requires :password, type: String
             requires :confirmation, type: String

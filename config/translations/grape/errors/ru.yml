@@ -1,8 +1,7 @@
 ru:
   grape:
     errors:
-      page_not_found: ! "Путь '%{path}' не найден"
-      format: ! 'параметр %{attributes} %{message}'
+      format: 'параметр %{attributes} %{message}'
       messages:
         coerce: 'неверен'
         presence: 'отсутствует'

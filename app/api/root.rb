@@ -2,6 +2,7 @@ module Sampleapp
   module Api
     autoload :V1, 'app/api/v1'
     autoload :ErrorFormatter, 'app/api/error_formatter'
+    require 'app/api/validators'
 
     class Root < Grape::API
       format :json
@@ -29,14 +30,38 @@ module Sampleapp
         )
       end
 
+      rescue_from CanCan::AccessDenied do
+        error_response(message: I18n.t('api.errors.you_dont_have_access'))
+      end
+
+      rescue_from :all do |e|
+        error_response(message: I18n.t(
+          'api.errors.unknown_error', error: e.message
+        ), backtrace: e.backtrace)
+      end
+
       mount Sampleapp::Api::V1::Root
 
       route :any do
-        error!(I18n.t('grape.errors.page_not_found', path: request.path), 404)
+        error!(
+          I18n.t(
+            'api.errors.page_not_found',
+            path: request.path,
+            method: request.method
+          ),
+          404
+        )
       end
 
       route :any, '*path' do
-        error!(I18n.t('grape.errors.page_not_found', path: request.path), 404)
+        error!(
+          I18n.t(
+            'api.errors.page_not_found',
+            path: request.path,
+            method: env['REQUEST_METHOD']
+          ),
+          404
+        )
       end
     end
   end

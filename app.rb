@@ -15,11 +15,13 @@ Dir['lib/**/*.rb'].sort.each { |file| require file }
 
 require 'app/extensions'
 require 'app/models'
+require 'app/ability'
 require 'app/helpers'
 require 'app/routes'
 require 'app/api'
 
 module Sampleapp
+  # Main sinatra module
   class App < Sinatra::Application
     configure do
       set :database, lambda {

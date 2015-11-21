@@ -3,7 +3,20 @@ ru:
     default_message: Не реализовано
 
     errors:
+      page_not_found: "Путь '%{method} %{path}' не найден"
       cant_save_record: "Не удалось сохранить запись. Ошибки: %{errors}"
+      wrong_uuid_format: имеет неверный формат UUID
+      not_found: Запись не найдена
+      you_dont_have_access: У вас недостаточно прав для совершения данного действия
+      unknown_error: "Неизвестная ошибка: %{error}"
 
     profile:
       password_changed: Пароль успешно изменен!
+
+    posts:
+      deleted: Пост успешно удален!
+
+    params:
+      page: Номер страницы
+      per_page: Количество записей на странице
+
