@@ -1,0 +1,34 @@
+AllCops:
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+  Exclude:
+    - 'db/**/*'
+    - 'Guardfile'
+    - 'lib/grape/pagination/**/*'
+    - 'app/api/logger.rb'
+
+StringLiterals:
+  EnforcedStyle: single_quotes
+
+AsciiComments:
+  Enabled: false
+
+Lint/EndAlignment:
+  AlignWith: variable
+
+Style/AlignParameters:
+  EnforcedStyle: with_fixed_indentation
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+ClassVars:
+  Enabled: false
+
+MethodLength:
+  CountComments: false
+  Max: 20

@@ -1,0 +1,62 @@
+en:
+  models:
+    attributes:
+      id:
+        name: ID
+        description: Unique id
+      email:
+        name: Email
+        description: Users email-address
+      name:
+        name: Name
+        description: Users full name
+      password:
+        name: Password
+        description: Secret password
+      password_confirmation:
+        name: Password confirmation
+        description: Secret password confirmation
+      password_digest:
+        name: Password digest
+        description: Encrypted password
+      is_admin:
+        name: Is admin flag
+        description: Indicates whether user admin or not
+      created_at:
+        name: Time of creation
+        description: Shows when record was created
+      updated_at:
+        name: Time of last update
+        description: Shows when record was updated last time
+      user:
+        name: User
+        description: Associated user
+      user_id:
+        name: User ID
+        description: ID of associated user
+      body:
+        name: Body
+        description: Full text of post body
+      post:
+        name: Post
+        description: Associated post
+      post_id:
+        name: Post ID
+        description: ID of associated post
+      text:
+        name: Text
+        description: Full comment text
+    errors:
+      joiner: " , "
+      exact_length: "is not %{exact} characters"
+      format: is invalid
+      includes: "is not in range or set: %{values}"
+      integer: is not a number
+      length_range: "is not between %{min} and %{max}"
+      max_length: "is longer than %{max} characters"
+      min_length: "is shorter than %{min} characters"
+      not_null: is not present
+      numeric: is not a number
+      type: "is not a valid %{type}"
+      presence: is not present
+      unique: is already taken

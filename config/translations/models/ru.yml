@@ -1,0 +1,62 @@
+ru:
+  models:
+    attributes:
+      id:
+        name: ID
+        description: Уникальный идентификационный номер
+      email:
+        name: Email
+        description: email-адрес пользователя
+      name:
+        name: Имя
+        description: Полное имя пользователя
+      password:
+        name: Пароль
+        description: Секретный пароль
+      password_confirmation:
+        name: Подтверждение пароля
+        description: Подтверждение секретного пароля
+      password_digest:
+        name: Хэш пароля
+        description: Зашифрованный пароль
+      is_admin:
+        name: Флаг администратора
+        description: "Отображает, является ли пользователь администратором"
+      created_at:
+        name: Время создания
+        description: "Отображает, когда была создана запись"
+      updated_at:
+        name: Время обновления
+        description: "Отображает, когда в последний раз запись была обновлена"
+      user:
+        name: Пользователь
+        description: Связанный пользователь
+      user_id:
+        name: Идентификатор пользователя
+        description: Идентификатор связанного пользователя
+      body:
+        name: Тело
+        description: Полный текст поста
+      post:
+        name: Пост
+        description: Связанный пост
+      post_id:
+        name: Идентификатор поста
+        description: Идентификатор связанного поста
+      text:
+        name: Текст
+        description: Полный текст комментария
+    errors:
+      joiner: " , "
+      exact_length: "не %{exact} символов длинной"
+      format: имеет неверный формат
+      includes: "не входит в: %{values}"
+      integer: не число
+      length_range: "не находится между %{min} и %{max}"
+      max_length: "больше %{max} символов"
+      min_length: "меньше %{min} символов"
+      not_null: отсутствует
+      numeric: не число
+      type: "не соответствует типу %{type}"
+      presence: отсутствует
+      unique: уже существует
