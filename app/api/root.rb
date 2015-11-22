@@ -22,6 +22,8 @@ module Sampleapp
 
       before do
         I18n.locale = params[:locale] || I18n.default_locale
+        header['Access-Control-Allow-Origin'] = '*'
+        header['Access-Control-Request-Method'] = '*'
       end
 
       rescue_from Sequel::ValidationFailed do |e|

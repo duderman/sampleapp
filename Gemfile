@@ -38,6 +38,7 @@ gem 'grape-entity'
 gem 'cancancan'
 gem 'grape-cancan'
 gem 'addressable'
+gem 'grape-swagger'
 
 group :development do
   gem 'thin'

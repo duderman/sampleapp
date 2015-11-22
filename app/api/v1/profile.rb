@@ -6,15 +6,20 @@ module Sampleapp
           enable_authentication
 
           desc 'Shows users profile',
-            params: Sampleapp::Api::V1::Entities::User.documentation
+            entity: Sampleapp::Api::V1::Entities::User,
+            http_codes: [[401, 'Not Authorized']]
           get do
             present @current_user, with: Sampleapp::Api::V1::Entities::User
           end
 
-          desc 'Update info'
+          desc 'Update info',
+            entity: Sampleapp::Api::V1::Entities::User,
+            http_codes: [[401, 'Not Authorized']]
           params do
             User::ACCESSIBLE_PARAMS.each do |attr|
-              optional attr, type: String
+              optional attr,
+                type: String,
+                desc: User.attribute_description(attr)
             end
           end
           put do
@@ -22,10 +27,14 @@ module Sampleapp
             present @current_user, with: Sampleapp::Api::V1::Entities::User
           end
 
-          desc 'Change password'
+          desc 'Change password', http_codes: [[401, 'Not Authorized']]
           params do
-            requires :password, type: String
-            requires :confirmation, type: String
+            requires :password,
+              type: String,
+              desc: 'New password'
+            requires :confirmation,
+              type: String,
+              desc: 'New password confirmation'
           end
           put :change_password do
             @current_user.update(
