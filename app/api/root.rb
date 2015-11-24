@@ -18,6 +18,17 @@ module Sampleapp
         def logger
           Sampleapp::Api::Root.logger
         end
+
+        def page_not_found_error!
+          error!(
+            I18n.t(
+              'api.errors.page_not_found',
+              path: request.path,
+              method: env['REQUEST_METHOD']
+            ),
+            404
+          )
+        end
       end
 
       before do
@@ -61,27 +72,8 @@ module Sampleapp
 
       mount Sampleapp::Api::V1::Root
 
-      route :any do
-        error!(
-          I18n.t(
-            'api.errors.page_not_found',
-            path: request.path,
-            method: request.method
-          ),
-          404
-        )
-      end
-
-      route :any, '*path' do
-        error!(
-          I18n.t(
-            'api.errors.page_not_found',
-            path: request.path,
-            method: env['REQUEST_METHOD']
-          ),
-          404
-        )
-      end
+      route(:any) { page_not_found_error! }
+      route(:any, '*path') { page_not_found_error! }
     end
   end
 end
